@@ -2,6 +2,8 @@ import axios from "axios"
 import { useDispatch } from "react-redux"
 import { fetchFail, fetchStart } from "../features/authSlice"
 
+const BASE_URL = import.meta.env.VITE_BASE_URL
+
 const useAuthCall = () => {
 
     const dispatch = useDispatch()
@@ -9,7 +11,7 @@ const useAuthCall = () => {
   const register = async () => {
     dispatch(fetchStart())
     try {
-        const {data} = await axios.post("https://19101.fullstack.clarusway.com/users/")
+        const {data} = await axios.post(`${BASE_URL}users/`)
         console.log(data);
         
     } catch (error) {
@@ -17,6 +19,7 @@ const useAuthCall = () => {
     }
     
   }
+  return {register}
 }
 
 export default useAuthCall
