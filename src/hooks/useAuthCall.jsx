@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useDispatch } from "react-redux"
-import { fetchFail, fetchStart, registerSuccess } from "../features/authSlice"
+import { fetchFail, fetchStart, loginSuccess, registerSuccess } from "../features/authSlice"
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify"
 import { useNavigate } from "react-router-dom"
 
@@ -30,7 +30,7 @@ const useAuthCall = () => {
     try {
         const {data} = await axios.post(`${BASE_URL}auth/login`, userInfo)
         console.log(data);
-        dispatch(registerSuccess(data))
+        dispatch(loginSuccess(data))
         toastSuccessNotify("Logged in successfully")
         navigate("/stock")
     } catch (error) {
