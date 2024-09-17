@@ -50,11 +50,12 @@ const Login = () => {
               email: "",
             }}
             validationSchema={SignInSchema}
-            onSubmit={values => {              
+            onSubmit={(values, actions) => {              
               console.log(values);
+              console.log(actions)
               login(values)
-              // actions.resetForm()
-              // actions.setSubmitting(false)
+              actions.resetForm()
+              actions.setSubmitting(false)
             }}
             component={(props)=><LoginForm {...props}/>}
           />
