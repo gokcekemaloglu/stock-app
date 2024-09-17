@@ -1,11 +1,11 @@
 import { Box, Button, CircularProgress, TextField } from "@mui/material";
 import { Form } from "formik";
 import { useSelector } from "react-redux";
-import * as Yup from "yup";
+import {object, string} from "yup";
 
-export const SignInSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid email").required("Required"),
-  password: Yup.string()
+export const SignInSchema = object().shape({
+  email: string().email("Invalid email").required("Required"),
+  password: string()
     .required()
     .min(8)
     .matches(/\d+/, "En az bir rakam içermelidir!")

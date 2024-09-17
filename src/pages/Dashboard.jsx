@@ -10,9 +10,7 @@ import useAuthCall from "../hooks/useAuthCall";
 
 function Dashboard() {
 
-  const {logout} = useAuthCall()
-
-  const {currentUser} = useSelector(state=>state.auth)
+  const {logout} = useAuthCall()  
 
   return (
     <Box sx={{ display: "flex" }}>

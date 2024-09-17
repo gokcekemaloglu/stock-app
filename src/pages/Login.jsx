@@ -14,7 +14,7 @@ import { Formik } from "formik";
 import LoginForm, { SignInSchema } from "../components/LoginForm";
 
 const Login = () => {
-  const theme = useTheme();
+  
   const {login} = useAuthCall()
 
   return (

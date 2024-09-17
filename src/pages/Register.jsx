@@ -59,9 +59,11 @@ const Register = () => {
               lastName: "",
             }}
             validationSchema={SignupSchema}
-            onSubmit={values => {              
+            onSubmit={(values, actions) => {              
               console.log(values);
               register(values)
+              actions.resetForm()
+              actions.setSubmitting(false)
             }}
             component={(props)=><RegisterForm {...props}/>}
           ></Formik>
