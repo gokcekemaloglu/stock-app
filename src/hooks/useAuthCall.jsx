@@ -6,20 +6,30 @@ const BASE_URL = import.meta.env.VITE_BASE_URL
 
 const useAuthCall = () => {
 
-    const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-  const register = async () => {
+  const register = async (userInfo) => {
     dispatch(fetchStart())
     try {
-        const {data} = await axios.post(`${BASE_URL}users/`)
-        console.log(data);
-        
+        const {data} = await axios.post(`${BASE_URL}users/`, userInfo)
+        console.log(data);        
     } catch (error) {
         dispatch(fetchFail())
-    }
-    
+    }    
   }
-  return {register}
+  
+
+  const login = async () => {
+    dispatch(fetchStart())
+    try {
+        const {data} = await axios.post(`${BASE_URL}auth/login`)
+        console.log(data);        
+    } catch (error) {
+        dispatch(fetchFail())
+    }    
+  }
+
+  return {register, login}
 }
 
 export default useAuthCall
