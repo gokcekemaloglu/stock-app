@@ -10,6 +10,7 @@ import AuthHeader from "../components/AuthHeader";
 import AuthImage from "../components/AuthImage";
 import { Form, Formik } from "formik";
 import * as Yup from 'yup';
+import useAuthCall from "../hooks/useAuthCall";
 
 const SignupSchema = Yup.object().shape({
   username: Yup.string().required("Bu alan zorunludur!").min(3, "Username en az 3 karakter olmalıdır!"),
@@ -26,6 +27,9 @@ const SignupSchema = Yup.object().shape({
 });
 
 const Register = () => {
+
+  const {register} = useAuthCall()
+
   return (
     <Container maxWidth="lg">
       <Grid
@@ -39,7 +43,6 @@ const Register = () => {
         }}
       >
         <AuthHeader />
-
         <Grid item xs={12} sm={10} md={6}>
           <Avatar
             sx={{
@@ -69,9 +72,9 @@ const Register = () => {
               lastName: "",
             }}
             validationSchema={SignupSchema}
-            onSubmit={values => {
-              // same shape as initial values
+            onSubmit={values => {              
               console.log(values);
+              register(values)
             }}
           >
             {({
