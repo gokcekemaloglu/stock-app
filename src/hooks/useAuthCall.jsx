@@ -25,11 +25,12 @@ const useAuthCall = () => {
     }    
   }  
 
-  const login = async () => {
+  const login = async (userInfo) => {
     dispatch(fetchStart())
     try {
-        const {data} = await axios.post(`${BASE_URL}auth/login`)
-        console.log(data);        
+        const {data} = await axios.post(`${BASE_URL}auth/login`, userInfo)
+        console.log(data);
+        dispatch(registerSuccess(data))
         toastSuccessNotify("Logged in successfully")
         navigate("/stock")
     } catch (error) {
