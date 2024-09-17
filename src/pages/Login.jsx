@@ -53,8 +53,8 @@ const Login = () => {
             onSubmit={values => {              
               console.log(values);
               login(values)
-              actions.resetForm()
-              actions.setSubmitting(false)
+              // actions.resetForm()
+              // actions.setSubmitting(false)
             }}
             component={(props)=><LoginForm {...props}/>}
           />
