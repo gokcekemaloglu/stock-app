@@ -1,6 +1,8 @@
 import { Box, Button, Modal, TextField } from "@mui/material";
 import React from "react";
 import { useState } from "react";
+import { flexColumn, modalStyle } from "../../styles/globalStyle";
+import useStockCall from "../../hooks/useStockCall";
 
 const style = {
     position: 'absolute',
@@ -18,9 +20,23 @@ const FirmModal = ({open, handleClose, initialState}) => {
 
     const [info, setInfo] = useState(initialState)
 
+    // const {getStockData, postStockData, putStockData} = useStockCall()
+
     const handleChange = (e) => {
         console.log(e.target.value);
         setInfo({...info, [e.target.name]: e.target.value})
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (info._id) {
+            // putStockData("firms")
+            console.log(info);
+            
+        } else {
+            postStockData("firms", info)
+        }
+        handleClose()
     }
 
   return (
@@ -30,8 +46,8 @@ const FirmModal = ({open, handleClose, initialState}) => {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box sx={style}>
-        <Box component="form">
+      <Box sx={modalStyle}>
+        <Box component="form" sx={flexColumn} onSubmit={handleSubmit}>
           <TextField 
             id="name" 
             name="name" 
@@ -72,7 +88,9 @@ const FirmModal = ({open, handleClose, initialState}) => {
             onChange={handleChange}
             required
           />
-          <Button variant="contained" type="submit">"Add New Firm"</Button>
+          <Button variant="contained" type="submit">
+            {info._id ? "Update Firm" : "Add New Firm"}
+          </Button>
         </Box>
       </Box>
     </Modal>

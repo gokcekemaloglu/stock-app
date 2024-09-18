@@ -21,8 +21,34 @@ const useStockCall = () => {
             toastErrorNotify(error.message)
         }        
     }
+    
+    const postStockData = async(endpoint, info) => {
+        dispatch(fetchStart())
+        console.log(endpoint);        
+        try {
+            const {data} = await axiosWithToken.post(endpoint, info)
+            console.log(data);            
+            toastSuccessNotify(endpoint)
+        } catch (error) {
+            dispatch(fetchFail())
+            toastErrorNotify(error.message)
+        }        
+    }
+    
+    const putStockData = async(endpoint) => {
+        dispatch(fetchStart())
+        console.log(endpoint);        
+        try {
+            const {data} = await axiosWithToken.put(endpoint)
+            console.log(data.data);            
+            toastSuccessNotify(endpoint)
+        } catch (error) {
+            dispatch(fetchFail())
+            toastErrorNotify(error.message)
+        }        
+    }
 
-  return {getStockData}
+  return {getStockData, postStockData, putStockData}
 }
 
 export default useStockCall

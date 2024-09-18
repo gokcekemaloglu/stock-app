@@ -3,14 +3,22 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { btnStyle } from '../../styles/globalStyle';
 
 const FirmCard = ({_id, name, address, phone, image}) => {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card
+        sx={{
+        height: 390,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        padding: "0.5rem",
+      }}
+    >
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {name}
@@ -32,9 +40,9 @@ const FirmCard = ({_id, name, address, phone, image}) => {
         </Typography>
         
       </CardContent>
-      <CardActions>
-        <EditIcon/>
-        <DeleteOutlineIcon/>
+      <CardActions sx={{ justifyContent: "center", gap: 2 }}>
+        <EditIcon sx={btnStyle}/>
+        <DeleteOutlineIcon sx={btnStyle}/>
       </CardActions>
     </Card>
   );
