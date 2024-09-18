@@ -32,20 +32,24 @@ const useStockCall = () => {
         } catch (error) {
             dispatch(fetchFail())
             toastErrorNotify(error.message)
-        }        
+        } finally {
+            getStockData(endpoint)
+        }
     }
     
     const putStockData = async(endpoint, info) => {
         dispatch(fetchStart())
         console.log(endpoint);        
         try {
-            const {data} = await axiosWithToken.put(`${endpoint}/${info._id}`)
+            const {data} = await axiosWithToken.put(`${endpoint}/${info._id}`, info)
             console.log(data.data);            
-            toastSuccessNotify(endpoint)
+            toastSuccessNotify("Firm updated")
         } catch (error) {
             dispatch(fetchFail())
             toastErrorNotify(error.message)
-        }        
+        } finally {
+            getStockData(endpoint)
+        }
     }
 
   return {getStockData, postStockData, putStockData}
