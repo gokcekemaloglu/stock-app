@@ -1,10 +1,11 @@
 import React from 'react'
 import { useEffect } from 'react'
 import useStockCall from '../hooks/useStockCall'
-import { Button, Container, Typography } from '@mui/material'
+import { Button, Container, Grid, Typography } from '@mui/material'
 import { useState } from 'react'
 import FirmModal from '../components/Modals/FirmModal'
 import { useSelector } from 'react-redux'
+import FirmCard from '../components/Cards/FirmCard'
 
 const Firms = () => {
 
@@ -51,7 +52,13 @@ const Firms = () => {
       </Typography>
       <Button variant="contained" onClick={handleOpen}>New Firm</Button>
       {open && <FirmModal open={open} handleClose={handleClose} initialState={initialState}/>}
-      
+      <Grid container>
+        {firms.map((firm)=>(
+          <Grid item xs={12} md={6} lg={4} xl={3} key={firm._id} >
+            <FirmCard {...firm}/>
+          </Grid>
+        ))}
+      </Grid>
 
     </Container>
   )
