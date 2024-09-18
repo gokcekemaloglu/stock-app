@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "../features/authSlice";
+import stockReducer from "../features/stockSlice"
 import { persistStore, persistReducer,
   FLUSH,
   REHYDRATE,
@@ -22,6 +23,7 @@ const store = configureStore({
   reducer: {
     // auth: authReducer,
     auth: persistedReducer,
+    stock: stockReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

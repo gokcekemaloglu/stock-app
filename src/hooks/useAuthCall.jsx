@@ -35,7 +35,7 @@ const useAuthCall = () => {
     dispatch(fetchStart());
     try {
       const { data } = await axiosPublic.post("auth/login", userInfo);
-      console.log(data);
+      // console.log(data);
       dispatch(loginSuccess(data));
       toastSuccessNotify("Logged in successfully");
       navigate("/stock");
