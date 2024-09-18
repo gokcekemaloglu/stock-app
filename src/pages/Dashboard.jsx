@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useSelector } from "react-redux";
 import useAuthCall from "../hooks/useAuthCall";
+import { Outlet } from "react-router-dom";
 
 function Dashboard() {
 
@@ -23,6 +24,7 @@ function Dashboard() {
           <Button color="inherit" onClick={logout}>Logout</Button>
         </Toolbar>
       </AppBar>
+      <Outlet/>
     </Box>
   );
 }
