@@ -3,7 +3,7 @@ import { Form } from "formik";
 import { useSelector } from "react-redux";
 import {object, string} from "yup";
 
-export const SignInSchema = object().shape({
+export const SignInSchema = object({
   email: string().email("Invalid email").required("Required"),
   password: string()
     .required()
