@@ -22,10 +22,9 @@ const stockSlice = createSlice({
       state.loading = false;
       state.error = true;
     },    
-    getStockSucces: (state, {payload}) => {
+    getStockSuccess: (state, {payload}) => {
       state.loading = false;
-      state.error = true;
-      state[payload.endpoint] = payload.stock
+      state[payload.endpoint] = payload?.stock
     },
   },
 });
@@ -33,6 +32,6 @@ const stockSlice = createSlice({
 export const {
   fetchStart,
   fetchFail,
-  getStockSucces,
+  getStockSuccess,
 } = stockSlice.actions;
 export default stockSlice.reducer;
