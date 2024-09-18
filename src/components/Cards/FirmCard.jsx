@@ -5,6 +5,8 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 const FirmCard = ({_id, name, address, phone, image}) => {
   return (
@@ -13,7 +15,7 @@ const FirmCard = ({_id, name, address, phone, image}) => {
         <Typography gutterBottom variant="h5" component="div">
           {name}
         </Typography>
-        <Typography gutterBottom variant="body2">
+        <Typography variant="body2" sx={{color: "text.second"}}>
           Address: {address}
         </Typography>
         
@@ -25,14 +27,14 @@ const FirmCard = ({_id, name, address, phone, image}) => {
         component="img"
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography variant="body2" >
           Phone: {phone}
         </Typography>
         
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <EditIcon/>
+        <DeleteOutlineIcon/>
       </CardActions>
     </Card>
   );

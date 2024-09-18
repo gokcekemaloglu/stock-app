@@ -52,7 +52,7 @@ const Firms = () => {
       </Typography>
       <Button variant="contained" onClick={handleOpen}>New Firm</Button>
       {open && <FirmModal open={open} handleClose={handleClose} initialState={initialState}/>}
-      <Grid container>
+      <Grid container spacing={2} mt={2}>
         {firms.map((firm)=>(
           <Grid item xs={12} md={6} lg={4} xl={3} key={firm._id} >
             <FirmCard {...firm}/>
