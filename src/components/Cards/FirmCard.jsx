@@ -8,7 +8,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { btnStyle } from '../../styles/globalStyle';
 
-const FirmCard = ({_id, name, address, phone, image}) => {
+const FirmCard = ({_id, name, address, phone, image, handleOpen, setInitialState}) => {
   return (
     <Card
         sx={{
@@ -41,7 +41,7 @@ const FirmCard = ({_id, name, address, phone, image}) => {
         
       </CardContent>
       <CardActions sx={{ justifyContent: "center", gap: 2 }}>
-        <EditIcon sx={btnStyle}/>
+        <EditIcon sx={btnStyle} onClick={()=> {handleOpen(), setInitialState({_id, name, address, phone, image}) }}/>
         <DeleteOutlineIcon sx={btnStyle}/>
       </CardActions>
     </Card>

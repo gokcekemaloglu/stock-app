@@ -33,10 +33,12 @@ const Firms = () => {
 
   const {firms} = useSelector(state => state.stock)
   console.log(firms);
+
+  console.log(initialState);
+  
   
 
   useEffect(()=>{
-    // console.log('useEffect')
     getStockData("firms")
   },[])
 
@@ -55,7 +57,7 @@ const Firms = () => {
       <Grid container spacing={2} mt={2}>
         {firms.map((firm)=>(
           <Grid item xs={12} md={6} lg={4} xl={3} key={firm._id} >
-            <FirmCard {...firm}/>
+            <FirmCard {...firm} handleOpen={handleOpen} setInitialState={setInitialState}/>
           </Grid>
         ))}
       </Grid>

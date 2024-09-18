@@ -20,7 +20,7 @@ const FirmModal = ({open, handleClose, initialState}) => {
 
     const [info, setInfo] = useState(initialState)
 
-    // const {getStockData, postStockData, putStockData} = useStockCall()
+    const {getStockData, postStockData, putStockData} = useStockCall()
 
     const handleChange = (e) => {
         console.log(e.target.value);
@@ -30,7 +30,7 @@ const FirmModal = ({open, handleClose, initialState}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (info._id) {
-            // putStockData("firms")
+            putStockData("firms", info)
             console.log(info);
             
         } else {
