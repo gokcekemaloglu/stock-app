@@ -5,6 +5,7 @@ import { useState } from 'react';
 import useStockCall from '../hooks/useStockCall';
 import { useSelector } from 'react-redux';
 import ProductModal from '../components/Modals/ProductModal';
+import ProductTable from '../components/Tables/ProductTable';
 
 const Products = () => {
 
@@ -50,9 +51,7 @@ const Products = () => {
       </Typography>
       <Button variant="contained" onClick={handleOpen}>New Product</Button>
       {open && <ProductModal open={open} handleClose={handleClose} initialState={initialState}/>}
-      <Grid>
-        something good
-      </Grid>
+      <ProductTable/>      
     </Container>
   )
 }
