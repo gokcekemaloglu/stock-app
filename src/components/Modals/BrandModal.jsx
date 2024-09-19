@@ -4,7 +4,7 @@ import { useState } from "react";
 import { flexColumn, modalStyle } from "../../styles/globalStyle";
 import useStockCall from "../../hooks/useStockCall";
 
-const FirmModal = ({open, handleClose, initialState}) => {
+const BrandModal = ({open, handleClose, initialState}) => {
 
     const [info, setInfo] = useState(initialState)
 
@@ -18,10 +18,10 @@ const FirmModal = ({open, handleClose, initialState}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (info._id) {
-            putStockData("firms", info)
+            putStockData("brands", info)
             console.log(info);            
         } else {
-            postStockData("firms", info)
+            postStockData("brands", info)
         }
         handleClose()
     }
@@ -38,7 +38,7 @@ const FirmModal = ({open, handleClose, initialState}) => {
           <TextField 
             id="name" 
             name="name" 
-            label="Firm Name" 
+            label="Brand Name" 
             type="text"
             variant="outlined"
             value={info.name}
@@ -46,29 +46,9 @@ const FirmModal = ({open, handleClose, initialState}) => {
             required
           />
           <TextField 
-            id="address" 
-            name="address" 
-            label="Firm Address" 
-            type="text"
-            variant="outlined"
-            value={info.address}
-            onChange={handleChange}
-            required
-          />
-          <TextField 
-            id="phone" 
-            name="phone" 
-            label="Firm Phone" 
-            type="text"
-            variant="outlined"
-            value={info.phone}
-            onChange={handleChange}
-            required
-          />
-          <TextField 
             id="image" 
             name="image" 
-            label="Firm Logo" 
+            label="Brand Logo" 
             type="url"
             variant="outlined"
             value={info.image}
@@ -76,12 +56,12 @@ const FirmModal = ({open, handleClose, initialState}) => {
             required
           />
           <Button variant="contained" type="submit">
-            {info._id ? "Update Firm" : "Add New Firm"}
+            {info._id ? "Update Brand" : "Add New Brand"}
           </Button>
         </Box>
       </Box>
     </Modal>
-  );
-};
+  )
+}
 
-export default FirmModal;
+export default BrandModal

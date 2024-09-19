@@ -9,7 +9,6 @@ import FirmCard from '../components/Cards/FirmCard'
 
 const Firms = () => {
 
-
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
