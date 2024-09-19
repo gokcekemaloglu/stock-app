@@ -26,17 +26,18 @@ const Products = () => {
     brandId: "", 
   })
 
-  const {getStockData} = useStockCall()
+  const {getStockData, getProCatBrand} = useStockCall()
 
   useEffect(()=>{
-    getStockData("products")
-    getStockData("categories")
-    getStockData("brands")
+    // getStockData("products")
+    // getStockData("categories")
+    // getStockData("brands")
+    getProCatBrand()
   },[])
 
   const {products} = useSelector(state=> state.stock)
 
-  console.log(products);
+  // console.log(products);
   
 
   return (

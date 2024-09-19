@@ -62,7 +62,7 @@ const MenuListItems = () => {
 
     const navigate = useNavigate()
     const location = useLocation()
-    console.log(location);    
+    // console.log(location);
 
   return (
     <div>
