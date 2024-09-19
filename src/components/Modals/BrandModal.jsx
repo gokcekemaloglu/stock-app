@@ -48,7 +48,7 @@ const BrandModal = ({open, handleClose, initialState}) => {
           <TextField 
             id="image" 
             name="image" 
-            label="Brand Logo" 
+            label="Brand Logo URL" 
             type="url"
             variant="outlined"
             value={info.image}
