@@ -29,6 +29,8 @@ const Products = () => {
 
   useEffect(()=>{
     getStockData("products")
+    getStockData("categories")
+    getStockData("brands")
   },[])
 
   const {products} = useSelector(state=> state.stock)
