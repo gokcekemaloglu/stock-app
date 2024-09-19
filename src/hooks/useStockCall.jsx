@@ -82,20 +82,24 @@ const useStockCall = () => {
         }
     }
 
-    const getFirmBrandPro = async () => {
+    const getFirmBrandProPur = async () => {
         dispatch(fetchStart())
         try {
-            const [firms, brands, products] = Promise.all([
+            const [firms, brands, products, purchases] = Promise.all([
                 axiosWithToken("firms"),
                 axiosWithToken("brands"),
                 axiosWithToken("products"),
+                axiosWithToken("purchases"),
             ])
+            console.log(firms);
+            
+            // dispatch(getFirmBrandProSuccess([firms?.data?.data, brands?.data?.data, products?.data?.data, purchases?.data?.data]))
         } catch (error) {
             dispatch(fetchFail())
         }
     }
 
-  return {getStockData, postStockData, putStockData, deleteStockData, getProCatBrand, getFirmBrandPro}
+  return {getStockData, postStockData, putStockData, deleteStockData, getProCatBrand, getFirmBrandProPur}
 }
 
 export default useStockCall

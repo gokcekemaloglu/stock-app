@@ -9,7 +9,7 @@ const PurchaseModal = ({open, handleClose, initialState}) => {
   const [info, setInfo] = useState(initialState);
 
   const { postStockData, putStockData } = useStockCall();
-  const {categories, brands, firms, products} = useSelector(state=>state.stock)
+  const {purchases, brands, firms, products} = useSelector(state=>state.stock)
 
   const handleChange = (e) => {
     console.log(e.target.value);
@@ -19,10 +19,10 @@ const PurchaseModal = ({open, handleClose, initialState}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (info._id) {
-      putStockData("products", info);
+      putStockData("purchases", info);
       console.log(info);
     } else {
-      postStockData("products", info);
+      postStockData("purchases", info);
     }
     handleClose();
   };

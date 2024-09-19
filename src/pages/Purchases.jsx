@@ -13,22 +13,26 @@ const Purchases = () => {
   const handleClose = () => {
     setOpen(false);
     setInitialState({
-      name: "",
-      categoryId: "",
+      firmId: "",
       brandId: "",
+      productId: "",
+      quantity: "",
+      price: "",
     });
   };
 
   const [initialState, setInitialState] = useState({
-    name: "",
-    categoryId: "",
-    brandId: "",
+    firmId: "",
+      brandId: "",
+      productId: "",
+      quantity: "",
+      price: "",
   });
 
-  const { getStockData, getFirmBrandPro } = useStockCall();
+  const { getStockData, getFirmBrandProPur } = useStockCall();
 
   useEffect(() => {    
-    getFirmBrandPro();
+    getFirmBrandProPur();
   }, []);
 
   const { purchases, loading, error } = useSelector((state) => state.stock);
