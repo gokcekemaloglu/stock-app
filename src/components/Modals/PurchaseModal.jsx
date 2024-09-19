@@ -2,13 +2,14 @@ import { Box, Button, FormControl, InputLabel, MenuItem, Modal, Select, TextFiel
 import { flexColumn, modalStyle } from "../../styles/globalStyle";
 import { useState } from "react";
 import useStockCall from "../../hooks/useStockCall";
+import { useSelector } from "react-redux";
 
-const PurchaseModal = () => {
+const PurchaseModal = ({open, handleClose, initialState}) => {
 
   const [info, setInfo] = useState(initialState);
 
   const { postStockData, putStockData } = useStockCall();
-  const {categories, brands} = useSelector(state=>state.stock)
+  const {categories, brands, firms, products} = useSelector(state=>state.stock)
 
   const handleChange = (e) => {
     console.log(e.target.value);
@@ -75,18 +76,28 @@ const PurchaseModal = () => {
             </Select>
           </FormControl>
           <TextField
-            id="name"
-            name="name"
-            label="Product Name"
-            type="text"
+            id="quantity"
+            name="quantity"
+            label="Quantity"
+            type="number"
             variant="outlined"
-            value={info.name}
+            value={info.quantity}
+            onChange={handleChange}
+            required
+          />
+          <TextField
+            id="price"
+            name="price"
+            label="Price"
+            type="number"
+            variant="outlined"
+            value={info.price}
             onChange={handleChange}
             required
           />
 
           <Button variant="contained" type="submit">
-            {info._id ? "Update Product" : "Add New Product"}
+            {info._id ? "Update Purchase" : "Add New Purchase"}
           </Button>
         </Box>
       </Box>

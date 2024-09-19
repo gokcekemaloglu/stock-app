@@ -82,7 +82,20 @@ const useStockCall = () => {
         }
     }
 
-  return {getStockData, postStockData, putStockData, deleteStockData, getProCatBrand}
+    const getFirmBrandPro = async () => {
+        dispatch(fetchStart())
+        try {
+            const [firms, brands, products] = Promise.all([
+                axiosWithToken("firms"),
+                axiosWithToken("brands"),
+                axiosWithToken("products"),
+            ])
+        } catch (error) {
+            dispatch(fetchFail())
+        }
+    }
+
+  return {getStockData, postStockData, putStockData, deleteStockData, getProCatBrand, getFirmBrandPro}
 }
 
 export default useStockCall
