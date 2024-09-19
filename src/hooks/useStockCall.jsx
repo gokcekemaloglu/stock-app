@@ -51,8 +51,23 @@ const useStockCall = () => {
             getStockData(endpoint)
         }
     }
+    
+    const deleteStockData = async(endpoint, id) => {
+        dispatch(fetchStart())
+        console.log(endpoint);        
+        try {
+            await axiosWithToken.delete(`${endpoint}/${id}`)
+            console.log(data.data);            
+            toastSuccessNotify(`${endpoint}Firm deleted`)
+        } catch (error) {
+            dispatch(fetchFail())
+            toastErrorNotify(error.message)
+        } finally {
+            getStockData(endpoint)
+        }
+    }
 
-  return {getStockData, postStockData, putStockData}
+  return {getStockData, postStockData, putStockData, deleteStockData}
 }
 
 export default useStockCall

@@ -7,8 +7,12 @@ import Typography from '@mui/material/Typography';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { btnStyle } from '../../styles/globalStyle';
+import useStockCall from '../../hooks/useStockCall';
 
 const BrandCard = ({_id, name, address, phone, image, handleOpen, setInitialState}) => {
+
+  const {deleteStockData} = useStockCall()
+
   return (
     <Card
         sx={{
@@ -32,7 +36,7 @@ const BrandCard = ({_id, name, address, phone, image, handleOpen, setInitialStat
       />      
       <CardActions sx={{ justifyContent: "center", gap: 2 }}>
         <EditIcon sx={btnStyle} onClick={()=> {handleOpen(), setInitialState({_id, name, address, phone, image}) }}/>
-        <DeleteOutlineIcon sx={btnStyle}/>
+        <DeleteOutlineIcon sx={btnStyle} onClick={()=>deleteStockData("brands",_id)}/>
       </CardActions>
     </Card>
   )
