@@ -15,7 +15,7 @@ const PurchaseModal = ({open, handleClose, initialState}) => {
   const {purchases, brands, firms, products} = useSelector(state=>state.stock)
 
   const handleChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setInfo({ ...info, [e.target.name]: e.target.value });
   };
 

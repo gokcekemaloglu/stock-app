@@ -54,10 +54,9 @@ const useStockCall = () => {
     
     const deleteStockData = async(endpoint, id) => {
         dispatch(fetchStart())
-        console.log(endpoint);        
+        // console.log(endpoint);        
         try {
-            await axiosWithToken.delete(`${endpoint}/${id}`)
-            console.log(data.data);            
+            await axiosWithToken.delete(`${endpoint}/${id}`)                  
             toastSuccessNotify(`${endpoint}Firm deleted`)
         } catch (error) {
             dispatch(fetchFail())
@@ -91,7 +90,7 @@ const useStockCall = () => {
                 axiosWithToken("products"),
                 axiosWithToken("purchases"),
             ])
-            console.log(firms);
+            // console.log(firms);
             
             dispatch(getFirmBrandProPurSuccess([firms?.data?.data, brands?.data?.data, products?.data?.data, purchases?.data?.data]))
         } catch (error) {

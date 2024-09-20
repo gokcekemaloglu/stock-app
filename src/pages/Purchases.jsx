@@ -38,7 +38,7 @@ const Purchases = () => {
 
   const { purchases, loading, error } = useSelector((state) => state.stock);
 
-  console.log(purchases);
+  // console.log(purchases);
 
   return (
     <Container>
