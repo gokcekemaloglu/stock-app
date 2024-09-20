@@ -1,10 +1,13 @@
-import { Box, Button, FormControl, InputLabel, MenuItem, Modal, Select, TextField } from "@mui/material";
+import { Box, Button, Divider, FormControl, InputLabel, MenuItem, Modal, Select, TextField } from "@mui/material";
 import { flexColumn, modalStyle } from "../../styles/globalStyle";
 import { useState } from "react";
 import useStockCall from "../../hooks/useStockCall";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const PurchaseModal = ({open, handleClose, initialState}) => {
+
+  const navigate = useNavigate()
 
   const [info, setInfo] = useState(initialState);
 
@@ -41,12 +44,14 @@ const PurchaseModal = ({open, handleClose, initialState}) => {
             <Select
               labelId="demo-simple-firm-label"
               id="demo-firm-select"
-              value={info.firmId}
+              value={info?.firmId?._id || info?.firmId || ""}
               name="firmId"
               label="firm"
               onChange={handleChange}
             >
-                {firms.map((firm)=><MenuItem key={firm._id} value={firm._id}>{firm.name}</MenuItem>)}
+              <MenuItem onClick={()=> navigate("/stock/firms")}>Add New Firm</MenuItem>
+              <Divider/>
+              {firms.map((firm)=><MenuItem key={firm._id} value={firm._id}>{firm.name}</MenuItem>)}
             </Select>
           </FormControl>
           <FormControl fullWidth>
@@ -54,12 +59,14 @@ const PurchaseModal = ({open, handleClose, initialState}) => {
             <Select
               labelId="demo-simple-brand-label"
               id="demo-brand-select"
-              value={info.brandId}
+              value={info?.brandId?._id || info?.brandId || ""}
               name="brandId"
               label="Brand"
               onChange={handleChange}
             >
-                {brands.map((brand)=><MenuItem key={brand._id} value={brand._id}>{brand.name}</MenuItem>)}
+              <MenuItem onClick={()=> navigate("/stock/brands")}>Add New Brand</MenuItem>
+              <Divider/>
+              {brands.map((brand)=><MenuItem key={brand._id} value={brand._id}>{brand.name}</MenuItem>)}
             </Select>
           </FormControl>
           <FormControl fullWidth>
@@ -67,12 +74,14 @@ const PurchaseModal = ({open, handleClose, initialState}) => {
             <Select
               labelId="demo-simple-product-label"
               id="demo-product-select"
-              value={info.productId}
+              value={info?.productId?._id || info?.productId || ""}
               name="productId"
               label="product"
               onChange={handleChange}
             >
-                {products.map((product)=><MenuItem key={product._id} value={product._id}>{product.name}</MenuItem>)}
+              <MenuItem onClick={()=> navigate("/stock/products")}>Add New Product</MenuItem>
+              <Divider/>
+              {products.map((product)=><MenuItem key={product._id} value={product._id}>{product.name}</MenuItem>)}
             </Select>
           </FormControl>
           <TextField

@@ -1,6 +1,6 @@
 import useAxios from './useAxios'
 import { useDispatch } from 'react-redux'
-import { fetchFail, fetchStart, getProCatBrandSuccess, getStockSuccess } from '../features/stockSlice'
+import { fetchFail, fetchStart, getFirmBrandProPurSuccess, getProCatBrandSuccess, getStockSuccess } from '../features/stockSlice'
 import { toastErrorNotify, toastSuccessNotify } from '../helper/ToastNotify'
 
 const useStockCall = () => {
@@ -85,7 +85,7 @@ const useStockCall = () => {
     const getFirmBrandProPur = async () => {
         dispatch(fetchStart())
         try {
-            const [firms, brands, products, purchases] = Promise.all([
+            const [firms, brands, products, purchases] = await Promise.all([
                 axiosWithToken("firms"),
                 axiosWithToken("brands"),
                 axiosWithToken("products"),
@@ -93,7 +93,7 @@ const useStockCall = () => {
             ])
             console.log(firms);
             
-            // dispatch(getFirmBrandProSuccess([firms?.data?.data, brands?.data?.data, products?.data?.data, purchases?.data?.data]))
+            dispatch(getFirmBrandProPurSuccess([firms?.data?.data, brands?.data?.data, products?.data?.data, purchases?.data?.data]))
         } catch (error) {
             dispatch(fetchFail())
         }

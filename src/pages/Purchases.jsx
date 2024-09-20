@@ -5,6 +5,7 @@ import useStockCall from '../hooks/useStockCall';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import PurchaseModal from '../components/Modals/PurchaseModal';
+import PurchaseTable from '../components/Tables/PurchaseTable';
 
 const Purchases = () => {
 
@@ -52,7 +53,8 @@ const Purchases = () => {
       <Button variant="contained" onClick={handleOpen}>
         New Purchase
       </Button>
-      <PurchaseModal open={open} handleClose={handleClose} initialState={initialState}/>
+      {open && <PurchaseModal open={open} handleClose={handleClose} initialState={initialState}/>}
+      <PurchaseTable setInitialState={setInitialState} handleOpen={handleOpen}/>
     </Container>
   )
 }

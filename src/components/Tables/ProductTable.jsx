@@ -62,7 +62,7 @@ const ProductTable = () => {
       editable: true,
     },
     {
-      field: "fullName",
+      field: "actions",
       headerName: "Actions",
       sortable: false,
       headerAlign: "center",
