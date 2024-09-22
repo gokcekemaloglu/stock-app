@@ -28,18 +28,7 @@ const SalesTable = ({setInitialState, handleOpen}) => {
       renderCell: ({ row }) => {
         return new Date(row.createdAt).toLocaleString("de-DE");
       },
-    },
-    {
-      field: "firmId",
-      headerName: "Firm",
-      flex: 1,
-      minWidth: 100,
-      headerAlign: "center",
-      align: "center",
-      renderCell: ({ row }) => {
-        return row?.firmId?.name ?? "-No Firm-";
-      },
-    },
+    },    
     {
       field: "brandId",
       headerName: "Brand",
