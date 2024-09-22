@@ -102,6 +102,7 @@ export default {
       },
     },
   },
+  darkMode: "selector",
   safelist: [
     {
       pattern:
