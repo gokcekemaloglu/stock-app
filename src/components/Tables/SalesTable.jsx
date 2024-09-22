@@ -12,11 +12,10 @@ function getRowId(row) {
 
 const SalesTable = ({setInitialState, handleOpen}) => {
 
-  const {sales, loading, error} = useSelector(state => state.stock)
+  const {sales} = useSelector(state => state.stock)
   const {deleteStockData} = useStockCall()
 
-  console.log(sales);
-  
+  // console.log(sales); 
 
   const columns = [
     {

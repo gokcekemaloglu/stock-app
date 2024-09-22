@@ -36,7 +36,7 @@ const Sales = () => {
   },[])
 
   const {sales, loading, error} = useSelector(state => state.stock)
-  console.log(sales);
+  // console.log(sales);
 
   return (
     <Container>
@@ -52,7 +52,25 @@ const Sales = () => {
         New Sale
       </Button>
       {open && <SalesModal open={open} handleClose={handleClose} initialState={initialState}/>}
-      <SalesTable setInitialState={setInitialState} handleOpen={handleOpen}/>
+      {loading ? (
+        <Typography
+          color="secondary.second"
+          variant="h5"
+          component="h3"
+        >
+          Loading
+        </Typography>
+      ) : error ? (
+        <Typography
+          color="error"
+          variant="h5"
+          component="h3"
+        >
+        {error.message}: Something went wrong...
+        </Typography>
+      ) : (
+        <SalesTable setInitialState={setInitialState} handleOpen={handleOpen}/>
+      )}      
     </Container>
   )
 }

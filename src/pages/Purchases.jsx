@@ -30,7 +30,7 @@ const Purchases = () => {
       price: "",
   });
 
-  const { getStockData, getFirmBrandProPur } = useStockCall();
+  const { getFirmBrandProPur } = useStockCall();
 
   useEffect(() => {    
     getFirmBrandProPur();
@@ -54,7 +54,25 @@ const Purchases = () => {
         New Purchase
       </Button>
       {open && <PurchaseModal open={open} handleClose={handleClose} initialState={initialState}/>}
-      <PurchaseTable setInitialState={setInitialState} handleOpen={handleOpen}/>
+      {loading ? (
+        <Typography
+          color="secondary.second"
+          variant="h5"
+          component="h3"
+        >
+          Loading...
+        </Typography>
+      ) : error ? (
+        <Typography
+          color="error"
+          variant="h5"
+          component="h3"
+        >
+          {error.message}: Something went wrong...
+        </Typography>
+      ) : (
+        <PurchaseTable setInitialState={setInitialState} handleOpen={handleOpen}/>
+      )}      
     </Container>
   )
 }

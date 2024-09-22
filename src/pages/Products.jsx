@@ -50,7 +50,6 @@ const Products = () => {
       </Typography>
       {loading ? (
         <Typography
-          align="center"
           color="secondary.second"
           variant="h5"
           component="h3"
@@ -64,7 +63,7 @@ const Products = () => {
           variant="h5"
           component="h3"
         >
-          Something went wrong...
+          {error.message}: Something went wrong...
         </Typography>
       ) : (
         <>

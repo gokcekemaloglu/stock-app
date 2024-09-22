@@ -8,14 +8,12 @@ import { useSelector } from 'react-redux'
 
 const SalesModal = ({open, handleClose, initialState}) => {
 
-    const navigate = useNavigate()
+  const navigate = useNavigate()
 
   const [info, setInfo] = useState(initialState);
 
   const { postStockData, putStockData } = useStockCall();
-  const {sales, brands, products} = useSelector(state=>state.stock)
-  
-  
+  const {sales, brands, products} = useSelector(state=>state.stock) 
 
   const handleChange = (e) => {
     // console.log(e.target.value);
@@ -26,14 +24,14 @@ const SalesModal = ({open, handleClose, initialState}) => {
     e.preventDefault();
     if (info._id) {
       putStockData("sales", info);
-      console.log(info);
+      // console.log(info);
     } else {
       postStockData("sales", info);
     }
     handleClose();
   };
 
-  console.log("brands",brands);
+  // console.log("brands",brands);
 
   return (
     <Modal
@@ -94,7 +92,6 @@ const SalesModal = ({open, handleClose, initialState}) => {
             onChange={handleChange}
             required
           />
-
           <Button variant="contained" type="submit">
             {info._id ? "Update Sale" : "Add New Sale"}
           </Button>
