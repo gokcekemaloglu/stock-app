@@ -4,6 +4,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import useStockCall from "../../hooks/useStockCall";
+import { btnStyle } from "../../styles/globalStyle";
 
 function getRowId(row) {
   return row._id;
@@ -72,6 +73,7 @@ const ProductTable = () => {
       renderCell: (params) => (
         <DeleteOutlineIcon
           onClick={() => deleteStockData("products", params.id)}
+          sx={btnStyle}
         />
       ),
     },

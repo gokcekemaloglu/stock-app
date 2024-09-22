@@ -38,6 +38,12 @@ const stockSlice = createSlice({
       state.brands = payload[1]
       state.products = payload[2]
       state.purchases = payload[3]
+    },
+    getSalesBrandProSuccess: (state, {payload}) => {
+      state.loading = false;
+      state.sales= payload[0]
+      state.brands= payload[1]
+      state.products= payload[2]
     }
   },
 });
@@ -48,5 +54,6 @@ export const {
   getStockSuccess,
   getProCatBrandSuccess,
   getFirmBrandProPurSuccess,
+  getSalesBrandProSuccess
 } = stockSlice.actions;
 export default stockSlice.reducer;

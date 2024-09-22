@@ -1,6 +1,6 @@
 import useAxios from './useAxios'
 import { useDispatch } from 'react-redux'
-import { fetchFail, fetchStart, getFirmBrandProPurSuccess, getProCatBrandSuccess, getStockSuccess } from '../features/stockSlice'
+import { fetchFail, fetchStart, getFirmBrandProPurSuccess, getProCatBrandSuccess, getSalesBrandProSuccess, getStockSuccess } from '../features/stockSlice'
 import { toastErrorNotify, toastSuccessNotify } from '../helper/ToastNotify'
 
 const useStockCall = () => {
@@ -24,7 +24,7 @@ const useStockCall = () => {
     
     const postStockData = async(endpoint, info) => {
         dispatch(fetchStart())
-        console.log(endpoint);        
+        // console.log(endpoint);
         try {
             const {data} = await axiosWithToken.post(endpoint, info)
             console.log(data);            
@@ -39,11 +39,11 @@ const useStockCall = () => {
     
     const putStockData = async(endpoint, info) => {
         dispatch(fetchStart())
-        console.log(endpoint);        
+        // console.log(endpoint);
         try {
             const {data} = await axiosWithToken.put(`${endpoint}/${info._id}`, info)
             console.log(data.data);            
-            toastSuccessNotify("Firm updated")
+            toastSuccessNotify("Purchase updated")
         } catch (error) {
             dispatch(fetchFail())
             toastErrorNotify(error.message)
@@ -98,7 +98,22 @@ const useStockCall = () => {
         }
     }
 
-  return {getStockData, postStockData, putStockData, deleteStockData, getProCatBrand, getFirmBrandProPur}
+    const getSalesBrandPro = async () => {
+        dispatch(fetchStart())
+        try {
+            const [sales, brands, products] = await Promise.all([
+                axiosWithToken("sales"),
+                axiosWithToken("brands"),
+                axiosWithToken("products"),
+            ])
+            console.log("sales:",sales);
+            dispatch(getSalesBrandProSuccess([sales?.data?.data, brands?.data?.data, products?.data?.data]))
+        } catch (error) {
+            dispatch(fetchFail())
+        }
+    }
+
+  return {getStockData, postStockData, putStockData, deleteStockData, getProCatBrand, getFirmBrandProPur, getSalesBrandPro}
 }
 
 export default useStockCall

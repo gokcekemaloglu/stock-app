@@ -1,18 +1,21 @@
-import { Box, Button, Divider, FormControl, InputLabel, MenuItem, Modal, Select, TextField } from "@mui/material";
-import { flexColumn, modalStyle } from "../../styles/globalStyle";
-import { useState } from "react";
-import useStockCall from "../../hooks/useStockCall";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Box, Button, Divider, FormControl, InputLabel, MenuItem, Modal, Select, TextField } from '@mui/material'
+import React from 'react'
+import { flexColumn, modalStyle } from '../../styles/globalStyle'
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import useStockCall from '../../hooks/useStockCall'
+import { useSelector } from 'react-redux'
 
-const PurchaseModal = ({open, handleClose, initialState}) => {
+const SalesModal = ({open, handleClose, initialState}) => {
 
-  const navigate = useNavigate()
+    const navigate = useNavigate()
 
   const [info, setInfo] = useState(initialState);
 
   const { postStockData, putStockData } = useStockCall();
-  const {purchases, brands, firms, products} = useSelector(state=>state.stock)
+  const {sales, brands, products} = useSelector(state=>state.stock)
+  
+  
 
   const handleChange = (e) => {
     // console.log(e.target.value);
@@ -22,15 +25,15 @@ const PurchaseModal = ({open, handleClose, initialState}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (info._id) {
-      putStockData("purchases", info);
+      putStockData("sales", info);
       console.log(info);
     } else {
-      postStockData("purchases", info);
+      postStockData("sales", info);
     }
     handleClose();
   };
-  console.log("brands:" ,brands);
-  
+
+  console.log("brands",brands);
 
   return (
     <Modal
@@ -40,22 +43,7 @@ const PurchaseModal = ({open, handleClose, initialState}) => {
       aria-describedby="modal-modal-description"
     >
       <Box sx={modalStyle}>
-        <Box component="form" sx={flexColumn} onSubmit={handleSubmit}>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-firm-label">Firm</InputLabel>
-            <Select
-              labelId="demo-simple-firm-label"
-              id="demo-firm-select"
-              value={info?.firmId?._id || info?.firmId || ""}
-              name="firmId"
-              label="firm"
-              onChange={handleChange}
-            >
-              <MenuItem onClick={()=> navigate("/stock/firms")}>Add New Firm</MenuItem>
-              <Divider/>
-              {firms.map((firm)=><MenuItem key={firm._id} value={firm._id}>{firm.name}</MenuItem>)}
-            </Select>
-          </FormControl>
+        <Box component="form" sx={flexColumn} onSubmit={handleSubmit}>          
           <FormControl fullWidth>
             <InputLabel id="demo-simple-brand-label">Brand</InputLabel>
             <Select
@@ -68,7 +56,7 @@ const PurchaseModal = ({open, handleClose, initialState}) => {
             >
               <MenuItem onClick={()=> navigate("/stock/brands")}>Add New Brand</MenuItem>
               <Divider/>
-              {brands.map((brand)=><MenuItem key={brand._id} value={brand._id}>{brand.name}</MenuItem>)}
+              {brands?.map((brand)=><MenuItem key={brand._id} value={brand._id}>{brand?.name}</MenuItem>)}
             </Select>
           </FormControl>
           <FormControl fullWidth>
@@ -108,7 +96,7 @@ const PurchaseModal = ({open, handleClose, initialState}) => {
           />
 
           <Button variant="contained" type="submit">
-            {info._id ? "Update Purchase" : "Add New Purchase"}
+            {info._id ? "Update Sale" : "Add New Sale"}
           </Button>
         </Box>
       </Box>
@@ -116,4 +104,4 @@ const PurchaseModal = ({open, handleClose, initialState}) => {
   )
 }
 
-export default PurchaseModal
+export default SalesModal

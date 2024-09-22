@@ -1,19 +1,22 @@
-import { Box } from "@mui/material";
-import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
-import React from "react";
-import { useSelector } from "react-redux";
-import useStockCall from "../../hooks/useStockCall";
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { Box } from '@mui/material';
+import { DataGrid, GridActionsCellItem, GridToolbar } from '@mui/x-data-grid';
+import React from 'react'
+import useStockCall from '../../hooks/useStockCall';import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import { btnStyle } from "../../styles/globalStyle";
+import { useSelector } from 'react-redux';
+import { btnStyle } from '../../styles/globalStyle';
 
 function getRowId(row) {
   return row._id;
 }
 
-const PurchaseTable = ({ setInitialState, handleOpen }) => {
-  const { purchases } = useSelector((state) => state.stock);
-  const { deleteStockData } = useStockCall();
+const SalesTable = ({setInitialState, handleOpen}) => {
+
+  const {sales, loading, error} = useSelector(state => state.stock)
+  const {deleteStockData} = useStockCall()
+
+  console.log(sales);
+  
 
   const columns = [
     {
@@ -123,7 +126,7 @@ const PurchaseTable = ({ setInitialState, handleOpen }) => {
     <Box sx={{ height: 400, width: "100%", marginTop: "1rem" }}>
       <DataGrid
         autoHeight
-        rows={purchases}
+        rows={sales}
         columns={columns}
         initialState={{
           pagination: {
@@ -141,7 +144,7 @@ const PurchaseTable = ({ setInitialState, handleOpen }) => {
         }}
       />
     </Box>
-  );
-};
+  )
+}
 
-export default PurchaseTable;
+export default SalesTable
