@@ -2,10 +2,16 @@ import { Container, Typography } from '@mui/material'
 import React from 'react'
 import KpiCards from '../components/KpiCards'
 import Charts from '../components/Charts'
+import useStockCall from '../hooks/useStockCall'
+import { useEffect } from 'react'
 
 const Home = () => {
 
-  
+  const {getPurSales} = useStockCall()
+
+  useEffect(()=>{
+    getPurSales()
+  },[])
 
   return (
     <Container>

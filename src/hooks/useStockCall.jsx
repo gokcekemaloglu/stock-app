@@ -1,6 +1,6 @@
 import useAxios from './useAxios'
 import { useDispatch } from 'react-redux'
-import { fetchFail, fetchStart, getFirmBrandProPurSuccess, getProCatBrandSuccess, getSalesBrandProSuccess, getStockSuccess } from '../features/stockSlice'
+import { fetchFail, fetchStart, getFirmBrandProPurSuccess, getProCatBrandSuccess, getPurSalesSuccess, getSalesBrandProSuccess, getStockSuccess } from '../features/stockSlice'
 import { toastErrorNotify, toastSuccessNotify } from '../helper/ToastNotify'
 
 const useStockCall = () => {
@@ -113,7 +113,21 @@ const useStockCall = () => {
         }
     }
 
-  return {getStockData, postStockData, putStockData, deleteStockData, getProCatBrand, getFirmBrandProPur, getSalesBrandPro}
+    const getPurSales = async () => {
+        dispatch(fetchStart())
+        try {
+            const [purchases, sales] = await Promise.all([
+                axiosWithToken("purchases"),
+                axiosWithToken("sales"),
+            ])
+            console.log("sales:",sales);
+            dispatch(getPurSalesSuccess([purchases?.data, sales?.data]))
+        } catch (error) {
+            dispatch(fetchFail())
+        }
+    }
+
+  return {getStockData, postStockData, putStockData, deleteStockData, getProCatBrand, getFirmBrandProPur, getSalesBrandPro, getPurSales}
 }
 
 export default useStockCall
